@@ -97,6 +97,15 @@ dialog h2{margin:0 0 4px;font-size:22px}.d{color:var(--mut);font-size:13px;margi
 .opt.on{border-color:var(--ac,#ffb3d1);background:color-mix(in srgb,var(--ac,#ffb3d1) 12%,#252525)}.opt.on i{border-color:var(--ac,#ffb3d1)}.opt.on i:after{content:"";position:absolute;inset:2px;border-radius:50%;background:var(--ac,#ffb3d1)}
 .opt span{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}.opt small{color:var(--mut);font-size:12px}.opt em{font-style:normal;font-weight:700}.opt:disabled{opacity:.45}
 
+
+#dlg{width:min(1000px,calc(100% - 28px));max-height:calc(100dvh - 28px);overflow:auto;padding:26px}
+.pdl{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:start;text-align:left}
+#dArt{width:100%;font-size:96px}#dArt img{object-fit:contain;transform:none}
+.pdi{min-width:0}.pdi h2{font-size:30px;margin:8px 0 6px}.tagc{display:inline-block;font-size:12px;color:var(--ac,#ffb3d1);background:#251c21;border-radius:999px;padding:4px 12px}
+.stk{display:flex;align-items:center;gap:8px;font-size:13px;color:#7be0a0;margin:0 0 10px}.stk i{width:7px;height:7px;border-radius:50%;background:#7be0a0}
+.pdi .d{font-size:14px;margin:0 0 16px;line-height:1.6}.pdi .qty{justify-content:flex-start;margin:6px 0 14px}.pdi .qty button{width:40px;height:40px;font-size:20px}.pdi .qty output{font-size:24px;min-width:44px}
+#s2{max-width:440px;margin:0 auto}
+@media(max-width:760px){.pdl{grid-template-columns:1fr;gap:16px}#dArt{max-width:360px;margin:0 auto}.pdi h2{font-size:24px}}
 </style>
 </head>
 <body>
@@ -106,10 +115,11 @@ dialog h2{margin:0 0 4px;font-size:22px}.d{color:var(--mut);font-size:13px;margi
 
 <dialog id="dlg">
  <button class="x" id="dx" aria-label="close">×</button>
- <div id="s1"><div class="art" id="dArt" style="margin-top:6px"></div><h2 id="dName"></h2><p class="d" id="dDesc"></p><div id="dOpts"></div>
+ <div id="s1" class="pdl"><div class="pimg" id="dArt"></div>
+  <div class="pdi"><span class="tagc" id="dCat"></span><h2 id="dName"></h2><div class="stk"><i></i><span data-t="พร้อมจำหน่าย|In stock"></span></div><p class="d" id="dDesc"></p><div id="dOpts"></div>
   <div class="qty"><button id="minus">−</button><output id="q">1</output><button id="plus">+</button></div>
-  <div class="sum"><div><span data-t="ราคาต่อชิ้น|Unit price"></span><b id="dUnit"></b></div><div><span data-t="รวมทั้งหมด|Total"></span><b id="dTot"></b></div></div>
-  <button class="btn full" id="go1" data-t="ยืนยัน|Confirm"></button></div>
+  <div class="sum"><div><span data-t="ราคาต่อชิ้น|Unit price"></span><b id="dUnit"></b></div><div><span data-t="ยอดชำระ|To pay"></span><b id="dTot"></b></div></div>
+  <button class="btn full" id="go1" data-t="สั่งซื้อสินค้า →|Buy now →"></button></div></div>
  <div id="s2" hidden><h2 data-t="ยืนยันอีกครั้ง|Confirm again"></h2><p class="warn" data-t="ตรวจสอบรายการก่อนสั่งซื้อ|Review your order before buying"></p>
   <div class="sum"><div><span data-t="สินค้า|Item"></span><b id="cName"></b></div><div><span data-t="จำนวน|Qty"></span><b id="cQty"></b></div><div><span data-t="ยอดชำระ|To pay"></span><b id="cTot"></b></div></div>
   <div class="acts"><button class="btn ghost" id="back" data-t="ย้อนกลับ|Back"></button><button class="btn" id="go2" data-t="ยืนยันสั่งซื้อ|Place order"></button></div></div>
@@ -287,7 +297,7 @@ function buy(key){
  const[k,i]=key.split(":");cur={k,i:+i,p:CATS[k].items[i],o:null};
  const op=cur.p[10]||[];if(op.length)cur.o=Math.max(0,op.findIndex(x=>x[2]==null||x[2]>0));
  dlg.style.setProperty("--ac",CATS[k].c);drawOpts();
- $("dArt").innerHTML=A(cur.p);$("dArt").style.setProperty("--ac",CATS[k].c);$("dName").textContent=cur.p[1];$("dDesc").textContent=dsc(cur.p).slice(0,100);$("dUnit").textContent=baht(unit());
+ $("dArt").innerHTML=A(cur.p);$("dArt").style.setProperty("--ac",CATS[k].c);$("dName").textContent=cur.p[1];$("dDesc").textContent=dsc(cur.p).slice(0,300);$("dCat").textContent=CATS[k].n;$("dUnit").textContent=baht(unit());
  $("s1").hidden=false;$("s2").hidden=true;setQty(1);dlg.showModal();
 }
 $("dOpts").onclick=e=>{const b=e.target.closest("[data-o]");if(!b||b.disabled)return;cur.o=+b.dataset.o;drawOpts();$("dUnit").textContent=baht(unit());setQty(qty)};
