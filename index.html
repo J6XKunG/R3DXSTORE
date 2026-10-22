@@ -109,7 +109,8 @@ dialog h2{margin:0 0 4px;font-size:22px}.d{color:var(--mut);font-size:13px;margi
 </dialog>
 <div id="ad" hidden><div class="lc"><div class="lang" style="width:max-content;margin:0 auto 16px"><button data-lang="th">TH</button><button data-lang="en">EN</button></div><i class="lgo" style="width:120px;height:88px;margin:0 auto 6px"></i><div class="le" id="ae"></div><h2 id="at"></h2><p class="ls" id="as"></p>
 <label for="au" data-t="ชื่อผู้ใช้|Username"></label><input class="in" id="au" autocomplete="username" data-tp="กรอกชื่อผู้ใช้|Enter username">
-<label for="ap" data-t="รหัสผ่าน|Password"></label><input class="in" id="ap" type="password" autocomplete="current-password" data-tp="กรอกรหัสผ่าน|Enter password">
+<label for="ap" data-t="รหัสผ่าน|Password"></label><input class="in" id="ap" type="password" autocomplete="current-password" data-tp="กรอกรหัสผ่าน|Enter password" autocapitalize="off" spellcheck="false">
+<p class="lw" style="margin:-4px 0 14px;text-align:left"><button type="button" class="lk" id="apv" data-t="แสดงรหัสผ่าน|Show password"></button> · <button type="button" class="lk" id="apc" data-t="ล้างรหัสผ่าน|Clear password"></button></p>
 <button class="btn full" id="ago"></button><p class="lw"><span id="asq"></span> <button class="lk" id="asw"></button></p></div></div>
 <div class="toast" id="toast" role="status"></div>
 
@@ -305,11 +306,13 @@ function sw(){
  $("asq").textContent=reg?_("มีบัญชีแล้ว?","Have an account?"):_("ยังไม่มีบัญชี?","No account yet?");
  $("asw").textContent=reg?_("เข้าสู่ระบบ","Sign in"):_("สมัครสมาชิก","Sign up");
 }
-$("asw").onclick=()=>{reg=!reg;sw()};$("ap").onkeydown=e=>e.key==="Enter"&&$("ago").click();
+$("asw").onclick=()=>{reg=!reg;sw()};
+$("apv").onclick=()=>{const h=$("ap").type==="password";$("ap").type=h?"text":"password";$("apv").dataset.t=h?"ซ่อนรหัสผ่าน|Hide password":"แสดงรหัสผ่าน|Show password";$("apv").textContent=$("apv").dataset.t.split("|")[L==="th"?0:1]};
+$("apc").onclick=()=>{$("ap").value="";$("ap").focus()};$("ap").onkeydown=e=>e.key==="Enter"&&$("ago").click();
 $("ago").onclick=async()=>{
  const n=$("au").value.trim().toLowerCase(),w=$("ap").value;
  if(CFG.API){ // real server
-  $("ago").disabled=true;try{const r=await api(reg?"/register":"/login",{username:n,password:w});r.ok?setMe(r):toast(r.error||_("ไม่สำเร็จ","Failed"))}catch{NET()}$("ago").disabled=false;return;
+  $("ago").disabled=true;try{const r=await api(reg?"/register":"/login",{username:n,password:w});r.ok?setMe(r):(toast(r.error||_("ไม่สำเร็จ","Failed")),$("ap").value="",$("ap").focus())}catch{NET()}$("ago").disabled=false;return;
  }
  // offline demo mode: accounts stay in this browser
  if(!/^[a-z0-9_]{3,20}$/.test(n))return toast(_("ชื่อผู้ใช้ 3-20 ตัว (a-z 0-9 _)","Username: 3-20 chars (a-z 0-9 _)"));
@@ -340,6 +343,7 @@ async function live(){
  try{
   const d=await api("/sync?v="+iv,null,"GET");if(!d.ok)return;
   if(d.balance!=null&&d.balance!==bal){bal=d.balance;renderUser()}
+  if(d.admin!=null&&me&&d.admin!==me.admin){me.admin=d.admin;S("gs_user",me);refresh()}
   const fk=JSON.stringify(d.feed);if(d.iv===iv&&fk===fs)return;
   if(d.items){for(const c in CATS)if(d.items[c])CATS[c].items=d.items[c];S("gs_items",d.items)}else if(d.items===null&&me?.admin)saveItems();
   iv=d.iv;fs=fk;FEED=d.feed||[];if(!dlg.open)paint();
