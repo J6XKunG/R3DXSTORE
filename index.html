@@ -106,6 +106,8 @@ dialog h2{margin:0 0 4px;font-size:22px}.d{color:var(--mut);font-size:13px;margi
 .pdi .d{font-size:14px;margin:0 0 16px;line-height:1.6}.pdi .qty{justify-content:flex-start;margin:6px 0 14px}.pdi .qty button{width:40px;height:40px;font-size:20px}.pdi .qty output{font-size:24px;min-width:44px}
 #s2{max-width:440px;margin:0 auto}
 @media(max-width:760px){.pdl{grid-template-columns:1fr;gap:16px}#dArt{max-width:360px;margin:0 auto}.pdi h2{font-size:24px}}
+.ck{width:20px;height:20px;accent-color:var(--ac,#ff8fbd);flex:none;margin:0;cursor:pointer}
+.selbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 2px 10px;font-size:14px;color:var(--mut)}.selbar label{display:flex;align-items:center;gap:10px;cursor:pointer}.selbar .btn:disabled{opacity:.4}
 </style>
 </head>
 <body>
@@ -170,7 +172,7 @@ const sold=p=>hist.filter(o=>o.name===p[1]||o.name.startsWith(p[1]+" - ")).reduc
 
 /* ===== state ===== */
 let me=J("gs_user",null);if(me&&(me.exp<Date.now()))me=null;
-let hist=J("gs_hist",[]),bal=0,iv="",fs="",FEED=[],view="home",newId=null,ed=null,cur,qty=1,reg=0;
+let hist=J("gs_hist",[]),bal=0,iv="",fs="",FEED=[],view="home",newId=null,ed=null,sel=new Set(),cur,qty=1,reg=0;
 const saveH=()=>S("gs_hist",hist);
 const api=(p,b,m="POST")=>fetch(CFG.API+p,{method:m,headers:{"Content-Type":"application/json",Authorization:"Bearer "+(me?.t||"")},body:b?JSON.stringify(b):undefined})
  .then(r=>r.json()).then(d=>{if(d.auth&&me)logout();return d});
@@ -251,7 +253,7 @@ function topupPg(){
 function adm(){
  if(!me?.admin)return`<div class="empty">${_("เฉพาะแอดมิน","Admins only")}</div>`;
  const e=ed?CATS[ed[0]].items[ed[1]]:["","","",""],I=(id,ph,v="",x="")=>`<input class="in" id="${id}" placeholder="${ph}" value="${esc(v)}" ${x} style="margin:0">`;
- const rows=Object.entries(CATS).map(([k,v])=>v.items.map((p,i)=>`<div class="ar"><span>${p[4]?`<img class="th" src="${esc(p[4])}" alt="">`:esc(p[0])}</span><b>${esc(p[1])}${p[6]?` <span class="chip">${_("แนะนำ","Featured")}</span>`:""}</b><small>${v.n}</small><div class="r"><b>${baht(p[3])}</b><button class="btn ghost sm" data-ed="${k}:${i}">${_("แก้ไข","Edit")}</button><button class="btn ghost sm" data-del="${k}:${i}">${_("ลบ","Delete")}</button></div></div>`).join("")).join("");
+ const rows=Object.entries(CATS).map(([k,v])=>v.items.map((p,i)=>`<div class="ar"><input type="checkbox" class="ck" data-sel="${k}:${i}"${sel.has(k+":"+i)?" checked":""} aria-label="select"><span>${p[4]?`<img class="th" src="${esc(p[4])}" alt="">`:ini(p[1])}</span><b>${esc(p[1])}${p[6]?` <span class="chip">${_("แนะนำ","Featured")}</span>`:""}</b><small>${v.n}</small><div class="r"><b>${baht(p[3])}</b><button class="btn ghost sm" data-ed="${k}:${i}">${_("แก้ไข","Edit")}</button><button class="btn ghost sm" data-del="${k}:${i}">${_("ลบ","Delete")}</button></div></div>`).join("")).join("");
  return`<h1>${_("หลังบ้าน","Admin")}</h1><p class="sub">${_("จัดการสินค้าและดูออเดอร์ (เฉพาะแอดมิน)","Manage products and orders (admins only)")}</p>
  <div class="stat"><div>${_("ออเดอร์ทั้งหมด","Total orders")}<b>${hist.length}</b></div><div>${_("ยอดขายรวม","Total sales")}<b>${baht(hist.reduce((a,o)=>a+o.total,0))}</b></div></div>
  <h2 class="s">${ed?_("แก้ไขสินค้า","Edit product"):_("เพิ่มสินค้า","Add product")}</h2>
@@ -269,7 +271,7 @@ function adm(){
  +`<h2 class="s">${_("จัดการแอดมิน","Admin management")}</h2>
  <div class="af" style="grid-template-columns:1fr">${I("a_au",_("ชื่อผู้ใช้สมาชิก","Member username"))}</div>
  <div style="display:flex;gap:8px;margin-bottom:12px"><button class="btn sm" data-ad="1">${_("แต่งตั้งแอดมิน","Appoint admin")}</button><button class="btn ghost sm" data-ad="0">${_("ยกเลิกแต่งตั้ง","Revoke admin")}</button></div><div id="al"></div>`
- +`<h2 class="s">${_("สินค้าทั้งหมด","All products")}</h2>${rows}<h2 class="s">${_("ออเดอร์ล่าสุด","Latest orders")}</h2>${hist.slice(0,8).map(o=>`<div class="ar"><span>${EA(o)}</span><b>${esc(o.name)} × ${o.qty}</b><small>#${o.id} · ${esc(o.u||"-")}</small><div class="r"><b>${baht(o.total)}</b></div></div>`).join("")||`<div class="empty">${_("ยังไม่มีออเดอร์","No orders yet")}</div>`}
+ +`<h2 class="s">${_("สินค้าทั้งหมด","All products")}</h2><div class="selbar"><label><input type="checkbox" class="ck" id="selall"> ${_("เลือกทั้งหมด","Select all")}</label><button class="btn ghost sm" id="delsel" data-delsel="1"${sel.size?"":" disabled"}>${_("ลบที่เลือก","Delete selected")} (${sel.size})</button></div>${rows}<h2 class="s">${_("ออเดอร์ล่าสุด","Latest orders")}</h2>${hist.slice(0,8).map(o=>`<div class="ar"><span>${EA(o)}</span><b>${esc(o.name)} × ${o.qty}</b><small>#${o.id} · ${esc(o.u||"-")}</small><div class="r"><b>${baht(o.total)}</b></div></div>`).join("")||`<div class="empty">${_("ยังไม่มีออเดอร์","No orders yet")}</div>`}
  <div style="margin-top:16px;display:flex;gap:8px"><button class="btn ghost sm" data-act="reset">${_("รีเซ็ตสินค้า","Reset products")}</button><button class="btn ghost sm" data-act="clear">${_("ล้างประวัติ","Clear history")}</button></div>`;
 }
 async function users(){
@@ -399,7 +401,7 @@ document.addEventListener("click",async e=>{
   }
   if(!me?.admin)return;
   if(a==="cancel"){ed=null;return paint()}
-  if(a==="reset"){if(confirm(_("รีเซ็ตสินค้าทั้งหมดเป็นค่าเริ่มต้น?","Reset all products to defaults?"))){const d=JSON.parse(DEF);for(const k in d)CATS[k].items=d[k];saveItems();ed=null;paint()}return}
+  if(a==="reset"){if(confirm(_("รีเซ็ตสินค้าทั้งหมดเป็นค่าเริ่มต้น?","Reset all products to defaults?"))){const d=JSON.parse(DEF);for(const k in d)CATS[k].items=d[k];sel.clear();saveItems();ed=null;paint()}return}
   if(a==="clear"){if(confirm(_("ล้างประวัติออเดอร์ทั้งหมด?","Clear all order history?"))){hist=[];saveH();paint()}return}
   if(a==="save"){
    const v=id=>$(id).value.trim(),it=["",v("a_n"),v("a_d"),Math.max(0,+v("a_p")||0),v("a_u"),v("a_k"),$("a_r").checked,v("a_t"),v("a_v"),v("a_x")],k=$("a_c").value;
@@ -407,13 +409,17 @@ document.addEventListener("click",async e=>{
    if(op.length){it[10]=op;it[3]=Math.min(...op.map(x=>x[1]))}
    if(!it[1])return toast(_("กรุณาใส่ชื่อสินค้า","Please enter a name"));
    if(ed){const[ok,oi]=ed;if(ok===k)CATS[k].items[oi]=it;else{CATS[ok].items.splice(oi,1);CATS[k].items.push(it)}}else CATS[k].items.push(it);
-   ed=null;saveItems();paint();toast(_("บันทึกแล้ว","Saved"));
+   ed=null;sel.clear();saveItems();paint();toast(_("บันทึกแล้ว","Saved"));
   }
   return;
  }
  if(!me?.admin)return;
  if(x=c("[data-ed]")){ed=x.dataset.ed.split(":");paint();return scrollTo({top:0,behavior:"smooth"})}
- if(x=c("[data-del]")){const[k,i]=x.dataset.del.split(":");if(confirm(_("ลบสินค้านี้?","Delete this product?"))){CATS[k].items.splice(i,1);saveItems();paint()}return}
+ if(x=c("[data-del]")){const[k,i]=x.dataset.del.split(":");if(confirm(_("ลบสินค้านี้?","Delete this product?"))){CATS[k].items.splice(i,1);sel.clear();saveItems();paint()}return}
+  const selUI=()=>{const all=document.querySelectorAll("[data-sel]"),b=$("delsel"),sa=$("selall");if(b){b.disabled=!sel.size;b.textContent=_("ลบที่เลือก","Delete selected")+" ("+sel.size+")"}if(sa)sa.checked=all.length>0&&sel.size===all.length};
+  if(x=c("[data-sel]")){x.checked?sel.add(x.dataset.sel):sel.delete(x.dataset.sel);selUI();return}
+  if(x=c("#selall")){document.querySelectorAll("[data-sel]").forEach(b=>{b.checked=x.checked;x.checked?sel.add(b.dataset.sel):sel.delete(b.dataset.sel)});selUI();return}
+  if(x=c("[data-delsel]")){if(!sel.size)return;if(confirm(_("ลบสินค้าที่เลือก "+sel.size+" ชิ้น?","Delete "+sel.size+" selected products?"))){const g={};[...sel].forEach(v=>{const[k,i]=v.split(":");(g[k]=g[k]||[]).push(+i)});for(const k in g)g[k].sort((a,b)=>b-a).forEach(i=>CATS[k].items.splice(i,1));sel.clear();saveItems();paint();toast(_("ลบแล้ว","Deleted"))}return}
  if(x=c("[data-pick]")){const v=x.dataset.pick;if($("a_tu"))$("a_tu").value=v;if($("a_au"))$("a_au").value=v;return($("a_ta")||$("a_au")).focus()}
   if(x=c("[data-ad],[data-adx]")){
    const on=!x.dataset.adx&&x.dataset.ad==="1",t=(x.dataset.adx||$("a_au").value).trim();
