@@ -94,7 +94,7 @@ dialog h2{margin:0 0 4px;font-size:22px}.d{color:var(--mut);font-size:13px;margi
 </head>
 <body>
 <header class="nav"><div class="brand"><i class="lgo"></i>R3DXSTORE</div><div class="user"><div class="lang" id="lang"><button data-lang="th">TH</button><button data-lang="en">EN</button></div><span id="user" class="user"></span></div></header>
-<div class="bh"></div><canvas id="fx"></canvas><div id="prog"></div><div id="ld"><i></i></div><a class="fab" id="fab" target="_blank" rel="noopener" aria-label="Discord">💬</a>
+<div class="bh"></div><canvas id="fx"></canvas><div id="prog"></div><div id="ld"><i></i></div><a class="fab" id="fab" target="_blank" rel="noopener" aria-label="Discord"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
 <div class="wrap"><aside><nav class="menu" id="menu"></nav></aside><main><div class="eyebrow" id="eyebrow"></div><div id="stage" class="enter"></div></main></div>
 
 <dialog id="dlg">
@@ -133,10 +133,10 @@ const NET=()=>toast(_("เชื่อมต่อเซิร์ฟเวอร
 
 /* ===== catalog: item = [emoji,name,desc,price,img,clip,featured,tip,review,file] ===== */
 const CATS={
- fivem:{n:"FiveM",c:"#ffb3d1",d:["สคริปต์ ยานพาหนะ และไอเทมสำหรับเซิร์ฟเวอร์ FiveM ของคุณ","Scripts, vehicles and items for your FiveM server"],items:[["🚗","Super Car Pack","รถสปอร์ต 10 คัน พร้อมแต่งสวย",390],["🧩","Job Script","สคริปต์อาชีพ ตั้งค่าง่าย",290],["👕","Clothing Pack","เสื้อผ้าและแอคเซสซอรี่ 50 ชุด",190],["👑","VIP Priority","คิวพิเศษเข้าเซิร์ฟเวอร์ 30 วัน",150]]},
- minecraft:{n:"Minecraft",c:"#b5f0d0",d:["แรงค์ คีย์ และไอเทมสำหรับเซิร์ฟเวอร์ Minecraft","Ranks, keys and items for Minecraft servers"],items:[["⛏️","Rank VIP","ยศ VIP พร้อมคำสั่งพิเศษ",99],["🗝️","Crate Key x5","คีย์กล่องสุ่ม 5 ใบ",59],["🪙","Coin 10,000","เหรียญในเซิร์ฟเวอร์",79],["🪽","Fly Kit","โหมดบินและชุดเสริม 30 วัน",129]]},
- valorant:{n:"Valorant",c:"#ff9fb4",d:["เติม VP และไอเทมสำหรับ Valorant","VP top-ups and items for Valorant"],items:[["🎯","VP 1,000","Valorant Points 1,000",299],["💎","VP 2,150","Valorant Points 2,150",599],["🎟️","Battle Pass","Battle Pass ซีซันปัจจุบัน",349],["🔫","Skin Bundle","ชุดสกินปืนสุดพิเศษ",899]]},
- roblox:{n:"Roblox",c:"#b4d2ff",d:["Robux และ Game Pass สำหรับ Roblox","Robux and Game Passes for Roblox"],items:[["🟥","Robux 400","Robux 400 R$",189],["🟦","Robux 800","Robux 800 R$",359],["🎮","Game Pass","Game Pass ตามที่เลือก",129],["⭐","Premium 450","Roblox Premium 450",199]]}
+ fivem:{n:"FiveM",c:"#ffb3d1",d:["สคริปต์ ยานพาหนะ และไอเทมสำหรับเซิร์ฟเวอร์ FiveM ของคุณ","Scripts, vehicles and items for your FiveM server"],items:[["","Super Car Pack","รถสปอร์ต 10 คัน พร้อมแต่งสวย",390],["","Job Script","สคริปต์อาชีพ ตั้งค่าง่าย",290],["","Clothing Pack","เสื้อผ้าและแอคเซสซอรี่ 50 ชุด",190],["","VIP Priority","คิวพิเศษเข้าเซิร์ฟเวอร์ 30 วัน",150]]},
+ minecraft:{n:"Minecraft",c:"#b5f0d0",d:["แรงค์ คีย์ และไอเทมสำหรับเซิร์ฟเวอร์ Minecraft","Ranks, keys and items for Minecraft servers"],items:[["","Rank VIP","ยศ VIP พร้อมคำสั่งพิเศษ",99],["","Crate Key x5","คีย์กล่องสุ่ม 5 ใบ",59],["","Coin 10,000","เหรียญในเซิร์ฟเวอร์",79],["","Fly Kit","โหมดบินและชุดเสริม 30 วัน",129]]},
+ valorant:{n:"Valorant",c:"#ff9fb4",d:["เติม VP และไอเทมสำหรับ Valorant","VP top-ups and items for Valorant"],items:[["","VP 1,000","Valorant Points 1,000",299],["","VP 2,150","Valorant Points 2,150",599],["","Battle Pass","Battle Pass ซีซันปัจจุบัน",349],["","Skin Bundle","ชุดสกินปืนสุดพิเศษ",899]]},
+ roblox:{n:"Roblox",c:"#b4d2ff",d:["Robux และ Game Pass สำหรับ Roblox","Robux and Game Passes for Roblox"],items:[["","Robux 400","Robux 400 R$",189],["","Robux 800","Robux 800 R$",359],["","Game Pass","Game Pass ตามที่เลือก",129],["","Premium 450","Roblox Premium 450",199]]}
 };
 const DE={"Super Car Pack":"10 tuned sports cars","Job Script":"Easy-to-configure job script","Clothing Pack":"50 outfits and accessories","VIP Priority":"30-day priority server queue","Rank VIP":"VIP rank with special commands","Crate Key x5":"5 random crate keys","Coin 10,000":"In-server coins","Fly Kit":"30-day fly mode and extras","Battle Pass":"Current season Battle Pass","Skin Bundle":"Exclusive weapon skin bundle","Game Pass":"Game Pass of your choice"};
 const dsc=p=>(L==="en"&&DE[p[1]])||p[2]||"";
@@ -145,7 +145,9 @@ const DEF=JSON.stringify(Object.fromEntries(Object.entries(CATS).map(([k,v])=>[k
 const sv=J("gs_items",null);if(sv)for(const k in CATS)if(sv[k])CATS[k].items=sv[k];
 const itemsData=()=>Object.fromEntries(Object.keys(CATS).map(k=>[k,CATS[k].items]));
 const saveItems=()=>{S("gs_items",itemsData());if(CFG.API&&me?.admin)api("/items",{items:itemsData()},"PUT").then(r=>r.ok||toast(_("บันทึกขึ้นเซิร์ฟเวอร์ไม่สำเร็จ","Server save failed"))).catch(NET)};
-const A=p=>p[4]?`<img src="${esc(p[4])}" alt="">`:esc(p[0]);   // item picture or emoji
+const ini=n=>esc(String(n||"?").trim()[0]||"?").toUpperCase();
+const A=p=>p[4]?`<img src="${esc(p[4])}" alt="">`:ini(p[1]);   // item picture or first letter
+const EA=o=>/^<img/.test(o.e||"")?o.e:ini(o.name);
 const sold=p=>hist.filter(o=>o.name===p[1]).reduce((a,o)=>a+o.qty,0);
 
 /* ===== state ===== */
@@ -157,8 +159,7 @@ const api=(p,b,m="POST")=>fetch(CFG.API+p,{method:m,headers:{"Content-Type":"app
 
 /* ===== menu & page shell ===== */
 function buildMenu(){
- const IC={home:"🏠",fivem:"🚗",minecraft:"⛏️",valorant:"🎯",roblox:"🎮",admin:"🛠️",topup:"💰",history:"🧾",settings:"⚙️"};
- const b=(v,l,x="")=>`<button class="mi" data-go="${v}"><i class="ic">${IC[v]}</i>${l}${x}</button>`;
+  const b=(v,l,x="")=>`<button class="mi" data-go="${v}">${l}${x}</button>`;
  $("menu").innerHTML='<span class="ind" id="ind"></span>'+b("home",_("หน้าแรก","Home"))+Object.entries(CATS).map(([k,v])=>b(k,v.n)).join("")
   +(me?.admin?b("admin",_("หลังบ้าน","Admin")):"")+(CFG.API?b("topup",_("เติมเงิน","Top up")):"")
   +b("history",_("ประวัติสินค้า","History"),`<span class="bd" id="bd">0</span>`)+(me?b("settings",_("ตั้งค่า","Settings")):"");
@@ -184,12 +185,12 @@ addEventListener("resize",()=>mark());document.fonts?.ready.then(()=>mark());
 const page=v=>v.startsWith("pd:")?pd(...v.split(":").slice(1)):({home,topup:topupPg,settings:settingsPg,admin:adm,history:histPg})[v]?.()||catPg(v);
 
 /* ===== pages ===== */
-const crd=(k,p,i)=>`<article class="card pc" data-open="${k}:${i}" style="--ac:${CATS[k].c}"><div class="pimg">${A(p)}${p[6]?`<span class="bdg">⭐ ${_("แนะนำ","Featured")}</span>`:""}<span class="pp">${baht(p[3])}</span></div><h3>${esc(p[1])}</h3><div class="mt">${_("ขายแล้ว","Sold")} <b>${sold(p)}</b></div><button class="btn full" data-buy="${k}:${i}">${_("ซื้อ","Buy")}</button></article>`;
+const crd=(k,p,i)=>`<article class="card pc" data-open="${k}:${i}" style="--ac:${CATS[k].c}"><div class="pimg">${A(p)}${p[6]?`<span class="bdg">${_("แนะนำ","Featured")}</span>`:""}<span class="pp">${baht(p[3])}</span></div><h3>${esc(p[1])}</h3><div class="mt">${_("ขายแล้ว","Sold")} <b>${sold(p)}</b></div><button class="btn full" data-buy="${k}:${i}">${_("ซื้อ","Buy")}</button></article>`;
 const catPg=k=>{const c=CATS[k]||CATS.fivem;k=CATS[k]?k:"fivem";return`<h1>${c.n}</h1><p class="sub">${_(...c.d)}</p><input class="in" id="cs" placeholder="${_("ค้นหาใน","Search in")} ${c.n}..." style="max-width:360px"><div class="grid">${c.items.map((p,i)=>crd(k,p,i)).join("")}</div>`};
 function home(){
  const K=Object.keys(CATS),n=K.reduce((a,k)=>a+CATS[k].items.length,0);
- const feed=(CFG.API?FEED.map(x=>({e:esc(x.e||"📦"),name:x.n,qty:x.q,total:x.t,u:x.u})):hist).slice(0,12)
-  .map(o=>`<div class="pf"><span>${o.e}</span><b>${esc(o.name)} ×${o.qty}</b><small>${esc(o.u||"-")} · ${baht(o.total)}</small></div>`).join("");
+ const feed=(CFG.API?FEED.map(x=>({e:"",name:x.n,qty:x.q,total:x.t,u:x.u})):hist).slice(0,12)
+  .map(o=>`<div class="pf"><span>${EA(o)}</span><b>${esc(o.name)} ×${o.qty}</b><small>${esc(o.u||"-")} · ${baht(o.total)}</small></div>`).join("");
  const feat=K.flatMap(k=>CATS[k].items.map((p,i)=>p[6]?crd(k,p,i):"")).join("");
  const faq=[[_("ซื้อแล้วได้รับของยังไง?","How do I receive my items?"),_("หลังสั่งซื้อ ทีมงานจะติดต่อผ่าน Discord เพื่อส่งสินค้าให้โดยตรง","After ordering, our team contacts you on Discord to deliver directly.")],
   [_("ชำระเงินช่องทางไหนได้บ้าง?","Which payment methods?"),_("โอนผ่านธนาคาร / PromptPay / TrueMoney ผ่านตั๋วใน Discord","Bank transfer / PromptPay / TrueMoney via a Discord ticket.")],
@@ -207,19 +208,19 @@ function pd(k,i){
  const c=CATS[k],p=c?.items[i];if(!p)return home();
  const lk=(u,t)=>U(u)?`<a class="btn ghost sm" target="_blank" rel="noopener" href="${U(u)}">${t}</a>`:"";
  return`<button class="btn ghost sm" data-go="${k}">← ${_("ย้อนกลับ","Back to")} ${c.n}</button><div class="pdh" style="--ac:${c.c}"><div class="pimg pd-img">${A(p)}</div><div>
- <div class="chips">${p[6]?`<span class="chip">⭐ ${_("แนะนำ","Featured")}</span>`:""}<span class="chip g">${_("พร้อมจำหน่าย","In stock")}</span><span class="chip">${_("ขายแล้ว","Sold")} ${sold(p)}</span></div><h1>${esc(p[1])}</h1><div class="price big">${baht(p[3])}<small> / ${_("ชิ้น","pc")}</small></div></div></div>
- <div class="card" style="--ac:${c.c}"><div class="row"><b>${_("รายละเอียดสินค้า","Details")}</b><span style="display:flex;gap:8px">${lk(p[5],"▶ "+_("ดูคลิป","Video"))}${lk(p[8],"⭐ "+_("รีวิว","Reviews"))}</span></div>
- <p class="dd">${esc(dsc(p))}</p>${p[7]?`<div class="tipb">💡 <b>${_("คำแนะนำ","Tips")}</b><p class="dd" style="margin:6px 0 0">${esc(p[7])}</p></div>`:""}<button class="btn full" data-buy="${k}:${i}">${_("ซื้อสินค้า","Buy now")}</button></div>`;
+ <div class="chips">${p[6]?`<span class="chip">${_("แนะนำ","Featured")}</span>`:""}<span class="chip g">${_("พร้อมจำหน่าย","In stock")}</span><span class="chip">${_("ขายแล้ว","Sold")} ${sold(p)}</span></div><h1>${esc(p[1])}</h1><div class="price big">${baht(p[3])}<small> / ${_("ชิ้น","pc")}</small></div></div></div>
+ <div class="card" style="--ac:${c.c}"><div class="row"><b>${_("รายละเอียดสินค้า","Details")}</b><span style="display:flex;gap:8px">${lk(p[5],_("ดูคลิป","Video"))}${lk(p[8],_("รีวิว","Reviews"))}</span></div>
+ <p class="dd">${esc(dsc(p))}</p>${p[7]?`<div class="tipb"><b>${_("คำแนะนำ","Tips")}</b><p class="dd" style="margin:6px 0 0">${esc(p[7])}</p></div>`:""}<button class="btn full" data-buy="${k}:${i}">${_("ซื้อสินค้า","Buy now")}</button></div>`;
 }
-const hx=o=>o.fl||o.rv||o.tip?`<div class="hx">${o.tip?`<p>💡 ${esc(o.tip)}</p>`:""}${U(o.fl)?`<a class="btn sm" target="_blank" rel="noopener" href="${U(o.fl)}">⬇ ${_("ดาวน์โหลดไฟล์สินค้า","Download files")}</a>`:""}${U(o.rv)?`<a class="btn ghost sm" target="_blank" rel="noopener" href="${U(o.rv)}">⭐ ${_("เขียนรีวิว","Write a review")}</a>`:""}</div>`:"";
+const hx=o=>o.fl||o.rv||o.tip?`<div class="hx">${o.tip?`<p>${esc(o.tip)}</p>`:""}${U(o.fl)?`<a class="btn sm" target="_blank" rel="noopener" href="${U(o.fl)}">${_("ดาวน์โหลดไฟล์สินค้า","Download files")}</a>`:""}${U(o.rv)?`<a class="btn ghost sm" target="_blank" rel="noopener" href="${U(o.rv)}">${_("เขียนรีวิว","Write a review")}</a>`:""}</div>`:"";
 function histPg(){
- const rows=hist.map(o=>`<div class="h-item${o.id===newId?" new":""}" style="--ac:${o.c||"#ffb3d1"}"><div class="art">${o.e}</div><div><b>${esc(o.name)} × ${o.qty}</b><small>${esc(o.cat)} · #${o.id} · ${fmt(o.ts)}</small></div><div class="r"><b>${baht(o.total)}</b><br><span class="ok">${_("ได้รับของแล้ว","Delivered")} ✓</span></div>${hx(o)}</div>`).join("");
+ const rows=hist.map(o=>`<div class="h-item${o.id===newId?" new":""}" style="--ac:${o.c||"#ffb3d1"}"><div class="art">${EA(o)}</div><div><b>${esc(o.name)} × ${o.qty}</b><small>${esc(o.cat)} · #${o.id} · ${fmt(o.ts)}</small></div><div class="r"><b>${baht(o.total)}</b><br><span class="ok">${_("ได้รับของแล้ว","Delivered")} ✓</span></div>${hx(o)}</div>`).join("");
  return`<h1>${_("ประวัติสินค้า","Order history")}</h1><p class="sub">${_("รายการที่สั่งซื้อแล้วทั้งหมดของคุณ","All your past orders")}</p>`+(hist.length?`<input class="in" id="hs" placeholder="${_("ค้นหาชื่อสินค้า...","Search products...")}"><div class="hist" id="hl">${rows}</div>`:`<div class="empty">${_("ยังไม่มีประวัติการสั่งซื้อ","No orders yet")}<br><small>${_("เลือกซื้อสินค้าจากหมวดหมู่ด้านข้างได้เลย","Pick something from the categories")}</small></div>`);
 }
 const needLogin=()=>`<div class="empty">${_("กรุณาเข้าสู่ระบบก่อน","Please sign in first")}</div>`;
 function settingsPg(){
  if(!me)return needLogin();
- return`<h1>${_("ตั้งค่า","Settings")}</h1><p class="sub">${_("โปรไฟล์บัญชีของคุณ","Your account profile")}</p><div class="card prof"><label class="pav" for="pv_f">${me.av?`<img src="${esc(me.av)}" alt="">`:esc((me.name[0]||"?").toUpperCase())}<span class="pe">📷</span></label>
+ return`<h1>${_("ตั้งค่า","Settings")}</h1><p class="sub">${_("โปรไฟล์บัญชีของคุณ","Your account profile")}</p><div class="card prof"><label class="pav" for="pv_f">${me.av?`<img src="${esc(me.av)}" alt="">`:esc((me.name[0]||"?").toUpperCase())}<span class="pe">+</span></label>
  <div><h3>${esc(me.name)}${me.admin?` <span class="chip">${_("แอดมิน","Admin")}</span>`:""}</h3><small>@${esc(me.name)}</small><br><small>${_("แตะที่รูปเพื่อเปลี่ยนรูปโปรไฟล์","Tap the picture to change it")}${me.av?` · <button class="lk" data-act="rmav">${_("ลบรูป","Remove")}</button>`:""}</small><input type="file" id="pv_f" accept="image/*" hidden></div></div>
  <div class="card" style="margin-top:14px"><div class="row"><b>${_("ยอด Token","Token balance")}</b><b class="tk">${bal.toLocaleString()}</b></div>${CFG.API?`<button class="btn ghost full" data-go="topup" style="margin-top:12px">${_("เติมเงิน","Top up")}</button>`:""}</div>`;
 }
@@ -232,27 +233,38 @@ function topupPg(){
 function adm(){
  if(!me?.admin)return`<div class="empty">${_("เฉพาะแอดมิน","Admins only")}</div>`;
  const e=ed?CATS[ed[0]].items[ed[1]]:["","","",""],I=(id,ph,v="",x="")=>`<input class="in" id="${id}" placeholder="${ph}" value="${esc(v)}" ${x} style="margin:0">`;
- const rows=Object.entries(CATS).map(([k,v])=>v.items.map((p,i)=>`<div class="ar"><span>${p[4]?`<img class="th" src="${esc(p[4])}" alt="">`:esc(p[0])}</span><b>${esc(p[1])}${p[6]?" ⭐":""}</b><small>${v.n}</small><div class="r"><b>${baht(p[3])}</b><button class="btn ghost sm" data-ed="${k}:${i}">${_("แก้ไข","Edit")}</button><button class="btn ghost sm" data-del="${k}:${i}">${_("ลบ","Delete")}</button></div></div>`).join("")).join("");
+ const rows=Object.entries(CATS).map(([k,v])=>v.items.map((p,i)=>`<div class="ar"><span>${p[4]?`<img class="th" src="${esc(p[4])}" alt="">`:esc(p[0])}</span><b>${esc(p[1])}${p[6]?` <span class="chip">${_("แนะนำ","Featured")}</span>`:""}</b><small>${v.n}</small><div class="r"><b>${baht(p[3])}</b><button class="btn ghost sm" data-ed="${k}:${i}">${_("แก้ไข","Edit")}</button><button class="btn ghost sm" data-del="${k}:${i}">${_("ลบ","Delete")}</button></div></div>`).join("")).join("");
  return`<h1>${_("หลังบ้าน","Admin")}</h1><p class="sub">${_("จัดการสินค้าและดูออเดอร์ (เฉพาะแอดมิน)","Manage products and orders (admins only)")}</p>
  <div class="stat"><div>${_("ออเดอร์ทั้งหมด","Total orders")}<b>${hist.length}</b></div><div>${_("ยอดขายรวม","Total sales")}<b>${baht(hist.reduce((a,o)=>a+o.total,0))}</b></div></div>
  <h2 class="s">${ed?_("แก้ไขสินค้า","Edit product"):_("เพิ่มสินค้า","Add product")}</h2>
  <div class="af" style="grid-template-columns:140px 1fr"><select class="in" id="a_c" style="margin:0">${Object.entries(CATS).map(([k,v])=>`<option value="${k}"${ed?.[0]===k?" selected":""}>${v.n}</option>`).join("")}</select><textarea class="in" id="a_d" rows="3" placeholder="${_("รายละเอียดสินค้า","Description")}" style="margin:0">${esc(e[2])}</textarea></div>
- <div class="af" style="grid-template-columns:70px 1fr 110px">${I("a_e","🎮",e[0])}${I("a_n",_("ชื่อสินค้า","Name"),e[1])}${I("a_p",_("ราคา","Price"),e[3],'type="number" min="0"')}</div>
+ <div class="af" style="grid-template-columns:1fr 110px">${I("a_n",_("ชื่อสินค้า","Name"),e[1])}${I("a_p",_("ราคา","Price"),e[3],'type="number" min="0"')}</div>
  <div class="af" style="grid-template-columns:48px 1fr 150px"><img class="th" id="a_pv" alt="" src="${esc(e[4]||"")}" ${e[4]?"":"hidden"}>${I("a_u",_("ลิงก์รูป 1:1 (หรืออัปโหลดไฟล์)","Image URL 1:1 (or upload)"),e[4]||"")}${I("a_f","","","type=\"file\" accept=\"image/*\"")}</div>
  <div class="af" style="grid-template-columns:1fr auto">${I("a_k",_("ลิงก์คลิป (YouTube ฯลฯ)","Video link"),e[5]||"")}<label style="display:flex;align-items:center;gap:6px;font-size:14px"><input type="checkbox" id="a_r" ${e[6]?"checked":""}>${_("แนะนำ","Featured")}</label></div>
  <textarea class="in" id="a_t" rows="2" placeholder="${_("คำแนะนำการใช้งานสินค้า (แสดงหลังซื้อ)","Usage tips (shown after purchase)")}">${esc(e[7]||"")}</textarea>
  <div class="af" style="grid-template-columns:1fr 1fr">${I("a_v",_("ลิงก์รีวิว","Review link"),e[8]||"")}${I("a_x",_("ลิงก์ไฟล์สินค้า (ส่งให้หลังซื้อ)","Product file link (sent after purchase)"),e[9]||"")}</div>
  <button class="btn sm" data-act="save">${ed?_("บันทึก","Save"):_("เพิ่มสินค้า","Add")}</button> ${ed?`<button class="btn ghost sm" data-act="cancel">${_("ยกเลิก","Cancel")}</button>`:""}
  <h2 class="s">${_("จัดการโทเคน (ยอดเงินสมาชิก)","Token management")}</h2>`+(CFG.API?`<div class="af" style="grid-template-columns:1fr 130px">${I("a_tu",_("ชื่อผู้ใช้สมาชิก","Member username"))}${I("a_ta",_("จำนวน","Amount"),"",'type="number" min="0"')}</div>
- <div style="display:flex;gap:8px;margin-bottom:12px"><button class="btn sm" data-tk="1">➕ ${_("เพิ่ม","Add")}</button><button class="btn ghost sm" data-tk="-1">➖ ${_("ลบ","Remove")}</button><button class="btn ghost sm" data-tk="s">✏️ ${_("ตั้งค่าเป็น","Set to")}</button></div><input class="in" id="a_us" placeholder="${_("ค้นหาสมาชิก...","Search members...")}"><div id="ul"></div>`
+ <div style="display:flex;gap:8px;margin-bottom:12px"><button class="btn sm" data-tk="1">${_("เพิ่ม","Add")}</button><button class="btn ghost sm" data-tk="-1">${_("ลบ","Remove")}</button><button class="btn ghost sm" data-tk="s">${_("ตั้งค่าเป็น","Set to")}</button></div><input class="in" id="a_us" placeholder="${_("ค้นหาสมาชิก...","Search members...")}"><div id="ul"></div>`
  :`<div class="card"><p class="dd" style="margin:0;color:var(--mut)">${_("ส่วนนี้ยังไม่ทำงาน เพราะยังไม่ได้เชื่อม Worker — ใส่ URL ที่ CFG.API","Inactive: no Worker connected — set its URL in CFG.API")}</p></div>`)
- +`<h2 class="s">${_("สินค้าทั้งหมด","All products")}</h2>${rows}<h2 class="s">${_("ออเดอร์ล่าสุด","Latest orders")}</h2>${hist.slice(0,8).map(o=>`<div class="ar"><span>${o.e}</span><b>${esc(o.name)} × ${o.qty}</b><small>#${o.id} · ${esc(o.u||"-")}</small><div class="r"><b>${baht(o.total)}</b></div></div>`).join("")||`<div class="empty">${_("ยังไม่มีออเดอร์","No orders yet")}</div>`}
+ +`<h2 class="s">${_("จัดการแอดมิน","Admin management")}</h2>
+ <div class="af" style="grid-template-columns:1fr">${I("a_au",_("ชื่อผู้ใช้สมาชิก","Member username"))}</div>
+ <div style="display:flex;gap:8px;margin-bottom:12px"><button class="btn sm" data-ad="1">${_("แต่งตั้งแอดมิน","Appoint admin")}</button><button class="btn ghost sm" data-ad="0">${_("ยกเลิกแต่งตั้ง","Revoke admin")}</button></div><div id="al"></div>`
+ +`<h2 class="s">${_("สินค้าทั้งหมด","All products")}</h2>${rows}<h2 class="s">${_("ออเดอร์ล่าสุด","Latest orders")}</h2>${hist.slice(0,8).map(o=>`<div class="ar"><span>${EA(o)}</span><b>${esc(o.name)} × ${o.qty}</b><small>#${o.id} · ${esc(o.u||"-")}</small><div class="r"><b>${baht(o.total)}</b></div></div>`).join("")||`<div class="empty">${_("ยังไม่มีออเดอร์","No orders yet")}</div>`}
  <div style="margin-top:16px;display:flex;gap:8px"><button class="btn ghost sm" data-act="reset">${_("รีเซ็ตสินค้า","Reset products")}</button><button class="btn ghost sm" data-act="clear">${_("ล้างประวัติ","Clear history")}</button></div>`;
 }
 async function users(){
- const el=$("ul");if(!el||!CFG.API)return;const d=await api("/users",null,"GET").catch(()=>0);if(!d?.ok)return;
- el.innerHTML=`<small style="color:var(--mut)">${_("สมาชิก","Members")} ${d.users.length} · ${_("โทเคนรวม","Total tokens")} ${baht(d.users.reduce((a,x)=>a+x.bal,0))}</small>`
-  +d.users.map(x=>`<div class="ar"><i class="ua">${x.av?`<img src="${esc(x.av)}" alt="">`:esc((x.name||"?")[0].toUpperCase())}</i><b>${esc(x.name||x.id)}</b><small>@${esc(x.id.slice(2))}</small><div class="r"><b>${baht(x.bal)}</b><button class="btn ghost sm" data-pick="${esc(x.id)}">${_("เลือก","Pick")}</button></div></div>`).join("");
+ const el=$("ul"),al=$("al");if(!el&&!al)return;
+ let list;
+ if(CFG.API){const d=await api("/users",null,"GET").catch(()=>0);if(!d?.ok)return;list=d.users}
+ else list=Object.entries(J("gs_acc",{})).map(([n,a])=>({id:"u:"+n,name:n,av:a.av,admin:a.admin,bal:0}));
+ const ua=x=>`<i class="ua">${x.av?`<img src="${esc(x.av)}" alt="">`:esc((x.name||"?")[0].toUpperCase())}</i>`;
+ if(el&&CFG.API)el.innerHTML=`<small style="color:var(--mut)">${_("สมาชิก","Members")} ${list.length} · ${_("โทเคนรวม","Total tokens")} ${baht(list.reduce((a,x)=>a+x.bal,0))}</small>`
+  +list.map(x=>`<div class="ar">${ua(x)}<b>${esc(x.name||x.id)}</b><small>@${esc(x.id.slice(2))}</small><div class="r"><b>${baht(x.bal)}</b><button class="btn ghost sm" data-pick="${esc(x.id)}">${_("เลือก","Pick")}</button></div></div>`).join("");
+ if(al){const ad=list.filter(x=>x.admin);
+  al.innerHTML=`<small style="color:var(--mut)">${_("แอดมินทั้งหมด","Admins")} ${ad.length}</small>`
+  +ad.map(x=>`<div class="ar">${ua(x)}<b>${esc(x.name||x.id)}</b><small>@${esc(x.id.slice(2))}</small><div class="r">${x.id===me?.id?`<span class="chip">${_("คุณ","You")}</span>`:`<button class="btn ghost sm" data-adx="${esc(x.id)}">${_("ยกเลิกแต่งตั้ง","Revoke admin")}</button>`}</div></div>`).join("")
+  +(CFG.API?"":`<small style="color:var(--mut)">${_("สมาชิกทั้งหมด","Members")}: ${list.filter(x=>!x.admin).map(x=>`<button class="lk" data-pick="${esc(x.id)}">${esc(x.name)}</button>`).join(" · ")||"-"}</small>`)}
 }
 
 /* ===== buying ===== */
@@ -335,7 +347,7 @@ async function live(){
 }
 async function orders(){
  if(!CFG.API||!me)return;const d=await api("/orders",null,"GET").catch(()=>0);
- if(d?.ok){hist=d.orders.map(o=>({...o,e:esc(o.e||"📦"),c:"#ffb3d1"}));saveH();paint()}
+ if(d?.ok){hist=d.orders.map(o=>({...o,e:"",c:"#ffb3d1"}));saveH();paint()}
 }
 setInterval(live,1e4);document.addEventListener("visibilitychange",live);
 
@@ -361,7 +373,7 @@ document.addEventListener("click",async e=>{
   if(a==="reset"){if(confirm(_("รีเซ็ตสินค้าทั้งหมดเป็นค่าเริ่มต้น?","Reset all products to defaults?"))){const d=JSON.parse(DEF);for(const k in d)CATS[k].items=d[k];saveItems();ed=null;paint()}return}
   if(a==="clear"){if(confirm(_("ล้างประวัติออเดอร์ทั้งหมด?","Clear all order history?"))){hist=[];saveH();paint()}return}
   if(a==="save"){
-   const v=id=>$(id).value.trim(),it=[v("a_e")||"📦",v("a_n"),v("a_d"),Math.max(0,+v("a_p")||0),v("a_u"),v("a_k"),$("a_r").checked,v("a_t"),v("a_v"),v("a_x")],k=$("a_c").value;
+   const v=id=>$(id).value.trim(),it=["",v("a_n"),v("a_d"),Math.max(0,+v("a_p")||0),v("a_u"),v("a_k"),$("a_r").checked,v("a_t"),v("a_v"),v("a_x")],k=$("a_c").value;
    if(!it[1])return toast(_("กรุณาใส่ชื่อสินค้า","Please enter a name"));
    if(ed){const[ok,oi]=ed;if(ok===k)CATS[k].items[oi]=it;else{CATS[ok].items.splice(oi,1);CATS[k].items.push(it)}}else CATS[k].items.push(it);
    ed=null;saveItems();paint();toast(_("บันทึกแล้ว","Saved"));
@@ -371,7 +383,16 @@ document.addEventListener("click",async e=>{
  if(!me?.admin)return;
  if(x=c("[data-ed]")){ed=x.dataset.ed.split(":");paint();return scrollTo({top:0,behavior:"smooth"})}
  if(x=c("[data-del]")){const[k,i]=x.dataset.del.split(":");if(confirm(_("ลบสินค้านี้?","Delete this product?"))){CATS[k].items.splice(i,1);saveItems();paint()}return}
- if(x=c("[data-pick]")){$("a_tu").value=x.dataset.pick;return $("a_ta").focus()}
+ if(x=c("[data-pick]")){const v=x.dataset.pick;if($("a_tu"))$("a_tu").value=v;if($("a_au"))$("a_au").value=v;return($("a_ta")||$("a_au")).focus()}
+  if(x=c("[data-ad],[data-adx]")){
+   const on=!x.dataset.adx&&x.dataset.ad==="1",t=(x.dataset.adx||$("a_au").value).trim();
+   if(!t)return toast(_("ใส่ชื่อผู้ใช้ก่อน","Enter a username first"));
+   if(!on&&(t===me.id||t.replace(/^u:/,"").toLowerCase()===me.name))return toast(_("ยกเลิกแอดมินของตัวเองไม่ได้","You cannot revoke yourself"));
+   const ok=()=>{toast(on?_("แต่งตั้งเป็นแอดมินแล้ว","Appointed as admin"):_("ยกเลิกการแต่งตั้งแล้ว","Admin revoked"));$("a_au").value="";users()};
+   if(CFG.API){try{const r=await api("/admin",{target:t,admin:on});r.ok?ok():toast(r.error||_("ไม่สำเร็จ","Failed"))}catch{NET()}return}
+   const n=t.replace(/^u:/,"").toLowerCase(),a=J("gs_acc",{});if(!a[n])return toast(_("ไม่พบผู้ใช้นี้","User not found"));
+   a[n].admin=on;S("gs_acc",a);ok();return;
+  }
  if(x=c("[data-tk]")){
   const st=x.dataset.tk==="s",a=Math.abs(+$("a_ta").value)*(st?1:+x.dataset.tk);
   if(!$("a_tu").value.trim()||!$("a_ta").value||(!st&&!a))return toast(_("ใส่ผู้ใช้และจำนวนก่อน","Enter user and amount first"));
